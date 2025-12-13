@@ -1,81 +1,82 @@
-# Projet — Mécanique Orbitale (ENS / M2)
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mécanique Orbitale — Projet</title>
 
-Ce repo contient :
-- le rapport (`Rapport détaillé.pdf`)
-- les scripts Matlab (`Exercice I.mlx`, `exercice_II.mlx`)
-- une page GitHub Pages (`index.html`) pour afficher les équations avec **KaTeX**.
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 
-## 1) Orbite elliptique — équations utilisées
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:980px;margin:40px auto;padding:0 16px;line-height:1.5}
+    h1,h2{line-height:1.15}
+    .card{border:1px solid #e5e7eb;border-radius:14px;padding:18px;margin:14px 0}
+    code{background:#f6f8fa;padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <h1>Projet — Introduction à la mécanique orbitale</h1>
+  <p>
+    Cette page rend les équations en <b>KaTeX</b> (compatible GitHub Pages).
+  </p>
 
-Rayon orbital :
-$
-r(\nu)=\frac{a(1-e^2)}{1+e\cos\nu}.
-$
+  <div class="card">
+    <h2>Géométrie orbitale</h2>
+    <p>
+      Rayon orbital en fonction de l’anomalie vraie :
+      $$ r(\nu)=\frac{a(1-e^2)}{1+e\cos\nu}. $$
+    </p>
+    <p>
+      Estimation de l’excentricité à partir de deux mesures :
+      $$ e=\frac{r_2-r_1}{r_1\cos\nu_1-r_2\cos\nu_2}. $$
+    </p>
+  </div>
 
-Excentricité (à partir de deux points) :
-$
-e=\frac{r_2-r_1}{r_1\cos\nu_1-r_2\cos\nu_2}.
-$
+  <div class="card">
+    <h2>Vitesse & période</h2>
+    <p>
+      Vis-viva :
+      $$ v=\sqrt{\mu\left(\frac{2}{r}-\frac{1}{a}\right)}. $$
+    </p>
+    <p>
+      Période :
+      $$ T=2\pi\sqrt{\frac{a^3}{\mu}}. $$
+    </p>
+  </div>
 
-Vis-viva :
-$
-v=\sqrt{\mu\left(\frac{2}{r}-\frac{1}{a}\right)}.
-$
+  <div class="card">
+    <h2>Dérives séculaires J2</h2>
+    <p>
+      Avec \(p=a(1-e^2)\) et \(n=\sqrt{\mu/a^3}\) :
+      $$ \dot{\Omega}=-\frac{3}{2}nJ_2\left(\frac{R_T}{p}\right)^2\cos i, $$
+      $$ \dot{\omega}=\frac{3}{4}nJ_2\left(\frac{R_T}{p}\right)^2(4-5\sin^2 i). $$
+    </p>
+  </div>
 
-Période :
-$
-T=2\pi\sqrt{\frac{a^3}{\mu}}.
-$
+  <div class="card">
+    <h2>Manœuvres & ergols</h2>
+    <p>
+      Tsiolkovski :
+      $$ \Delta V=I_{sp}g_0\ln\left(\frac{m_0}{m_f}\right). $$
+    </p>
+  </div>
 
-## 2) Perturbation J2 — dérives séculaires
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>
 
-Avec $p=a(1-e^2)$ et $n=\sqrt{\mu/a^3}$ :
-$
-\dot{\Omega}=-\frac{3}{2}nJ_2\left(\frac{R_T}{p}\right)^2\cos i,
-$
-$
-\dot{\omega}=\frac{3}{4}nJ_2\left(\frac{R_T}{p}\right)^2(4-5\sin^2 i).
-$
-
-Inclinaison critique (gel de $\omega$) :
-$$
-4-5\sin^2 i=0 \Rightarrow \sin^2 i=\frac{4}{5}.
-$$
-
-## 3) Transfert de Hohmann (rendez-vous)
-
-Demi-grand axe de l’ellipse de transfert :
-$$
-a_T=\frac{r_1+r_2}{2}.
-$$
-
-Vitesses sur l’ellipse (périgée / apogée) :
-$
-v_{p,T}=\sqrt{\mu\left(\frac{2}{r_1}-\frac{1}{a_T}\right)},\quad
-v_{a,T}=\sqrt{\mu\left(\frac{2}{r_2}-\frac{1}{a_T}\right)}.
-$
-
-Impulsions :
-$
-\Delta v_1=v_{p,T}-v_1,\quad \Delta v_2=v_2-v_{a,T},\quad \Delta v_{tot}=\Delta v_1+\Delta v_2.
-$
-
-Temps de vol (demi-période) :
-$
-T_{trans}=\pi\sqrt{\frac{a_T^3}{\mu}}.
-$
-
-Phasage (rendez-vous) :
-$$
-\varphi_0+n_2t_t=\pi \Rightarrow \varphi_0=\pi-n_2t_t.
-$$
-
-## 4) Masse d’ergols (Tsiolkovski)
-
-$$
-\Delta V=I_{sp}g_0\ln\left(\frac{m_0}{m_f}\right),
-\quad
-m_f=m_0\exp\left(-\frac{\Delta V}{I_{sp}g_0}\right),
-\quad
-m_{erg}=m_0-m_f.
-$$
